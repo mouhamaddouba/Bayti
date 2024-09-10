@@ -54,4 +54,7 @@ abstract class AppStrings {
   static const String commercialLands = "commercialLands";
   static const String warehouses = "warehouses";
   static const String specialOffers = "specialOffers";
+
+  static const String addNewRealEstate = "addNewRealEstate";
+  static const String addNewRealEstateRequest = "addNewRealEstateRequest";
 }

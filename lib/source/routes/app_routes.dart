@@ -6,4 +6,10 @@ abstract class AppRoutes {
 
   /// dashboard
   static const String dashboard = '/dashboard';
+
+  /// new real estate
+  static const String newRealEstate = '/newRealEstate';
+
+  /// list real estate
+  static const String listRealEstate = '/listRealEstate';
 }

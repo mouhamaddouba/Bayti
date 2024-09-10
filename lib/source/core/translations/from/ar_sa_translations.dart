@@ -55,4 +55,7 @@ final Map<String, String> arSA = {
   AppStrings.commercialLands: 'أراضي تجارية',
   AppStrings.warehouses: 'مستودعات',
   AppStrings.specialOffers: 'عروض مميزة',
+
+  AppStrings.addNewRealEstate: 'إنشاء عقار جديد',
+  AppStrings.addNewRealEstateRequest: 'إضافة طلب عقار',
 };
