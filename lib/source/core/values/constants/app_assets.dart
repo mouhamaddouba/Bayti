@@ -4,22 +4,29 @@ abstract class AppAssets {
   ///region Subfolder assets
   static const String _fonts = '$_assets/fonts';
   static const String _images = '$_assets/images';
+  static const String _icons = '$_assets/icons';
+  static const String _svgs = '$_assets/svgs';
 
   ///endregion Subfolder assets
 
   ///region fonts assets
-  static const String fontLight = '$_fonts/bukra-light.ttf';
-  static const String fontRegular = '$_fonts/bukra-regular.otf';
-  static const String fontMedium = '$_fonts/bukra-medium.otf';
-  static const String fontBold = '$_fonts/bukra-bold.ttf';
+  static const String fontLight = '$_fonts/Sora-Light.ttf';
+  static const String fontRegular = '$_fonts/Sora-Regular.ttf';
+  static const String fontMedium = '$_fonts/Sora-Medium.ttf';
+  static const String fontBold = '$_fonts/Sora-Bold.tt';
 
   ///region icons assets
+  static const String realEstat = '$_icons/real_estat.svg';
+  static const String offersExpired = '$_icons/offers_expired.svg';
+  static const String favorite = '$_icons/favorite.svg';
+  static const String notification = '$_icons/notification.svg';
 
   ///region images assets
   static const String logo = '$_images/bayti_logo.png';
   static const String logoAdmin = '$_images/bayti_admin_logo.png';
 
   ///region svgs assets
+  static const String noNotification = '$_svgs/no_notification.svg';
 
   ///region network image
   static const String villas =

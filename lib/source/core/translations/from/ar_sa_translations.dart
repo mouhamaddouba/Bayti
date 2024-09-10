@@ -36,11 +36,14 @@ final Map<String, String> arSA = {
   ///region splash
   AppStrings.realEstateService: 'خدمة عقارية',
 
-  ///region dashboard admin
+  ///region dashboard
   AppStrings.realEstateTab: 'عقارات',
   AppStrings.offersExpired: 'عروض منتهية',
   AppStrings.favorite: 'المفضلة',
   AppStrings.notifications: 'الإشعارات',
+
+  /// region dashboard notification
+  AppStrings.notFoundNotification: 'لا يوجد إشعارات',
 
   ///region real estat
   AppStrings.villas: 'فيلات',

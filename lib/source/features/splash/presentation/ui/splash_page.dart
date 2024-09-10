@@ -2,7 +2,7 @@ import 'package:bayti/source/core/values/app_colors.dart';
 import 'package:bayti/source/core/values/app_dimensions.dart';
 import 'package:bayti/source/core/values/app_strings.dart';
 import 'package:bayti/source/core/values/constants/app_assets.dart';
-import 'package:bayti/source/features/splash/logic/splash_controller.dart';
+import 'package:bayti/source/features/splash/presentation/logic/splash_controller.dart';
 import 'package:bayti/source/global_widgets/app_image_widget.dart';
 import 'package:bayti/source/global_widgets/app_loading_widget.dart';
 import 'package:bayti/source/global_widgets/app_text_widget.dart';

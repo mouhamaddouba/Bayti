@@ -1,8 +1,10 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'package:bayti/source/core/values/constants/app_constants.dart';
-import 'package:bayti/source/features/splash/logic/splash_event.dart';
-import 'package:bayti/source/features/splash/logic/splash_state.dart';
+import 'package:bayti/source/features/splash/presentation/logic/splash_event.dart';
+import 'package:bayti/source/features/splash/presentation/logic/splash_state.dart';
+import 'package:bayti/source/routes/app_pages.dart';
+
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -60,9 +62,9 @@ class SplashController extends GetxController {
         seconds: AppConstants.duration01,
       ),
       () {
-        // Get.offNamed(
-        //   AppRoutes.dashboard,
-        // );
+        Get.offNamed(
+          AppRoutes.dashboard,
+        );
       },
     );
   }

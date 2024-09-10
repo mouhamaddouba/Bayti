@@ -1,6 +1,6 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 abstract class AppConstants {
+  static const bool isAdmin = false;
+
   /// Duration
   static const int duration01 = 1;
   static const int duration05 = 5;
@@ -23,4 +23,7 @@ abstract class AppConstants {
   static const double border0_5 = 0.5;
   static const double border1_2 = 1.2;
   static const double border1_5 = 1.5;
+
+  /// Constant blur
+  static const double blur03 = 3;
 }
