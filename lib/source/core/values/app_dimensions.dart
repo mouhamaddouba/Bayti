@@ -120,6 +120,7 @@ abstract class AppDimensions {
   static const double height09 = 9.0;
   static const double height10 = 10.0;
   static const double height15 = 15.0;
+  static const double height16 = 16.0;
   static const double height20 = 20.0;
   static const double height25 = 25.0;
   static const double height30 = 30.0;

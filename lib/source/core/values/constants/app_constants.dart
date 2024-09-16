@@ -1,5 +1,5 @@
 abstract class AppConstants {
-  static const bool isAdmin = false;
+  static const bool isAdmin = true;
 
   /// Duration
   static const int duration01 = 1;

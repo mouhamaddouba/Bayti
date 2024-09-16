@@ -45,7 +45,7 @@ class AppButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: color,
-            width: AppDimensions.thickness01,
+            width: AppDimensions.thickness02,
           ),
           color: _getColor(),
           borderRadius: BorderRadius.circular(
@@ -56,7 +56,7 @@ class AppButtonWidget extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.paddingOrMargin10,
+              horizontal: AppDimensions.paddingOrMargin20,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

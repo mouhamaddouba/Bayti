@@ -4,6 +4,8 @@ import 'package:bayti/source/features/dashboard_favorite/presentation/dashboard_
 import 'package:bayti/source/features/dashboard_notification/presentation/dashboard_notification_binding.dart';
 import 'package:bayti/source/features/dashboard_offers_expired/presentation/dashboard_offers_expired_binding.dart';
 import 'package:bayti/source/features/dashboard_real_estate/presentation/dashboard_real_estate_binding.dart';
+import 'package:bayti/source/features/new_real_estate/presentation/new_real_estate_binding.dart';
+import 'package:bayti/source/features/new_real_estate/presentation/ui/new_real_estate_page.dart';
 import 'package:bayti/source/features/splash/presentation/splash_binding.dart';
 import 'package:bayti/source/features/splash/presentation/ui/splash_page.dart';
 import 'package:get/get.dart';
@@ -31,6 +33,14 @@ abstract class AppPages {
         DashboardNotificationBinding(),
         DashboardOffersExpiredBinding(),
       ],
+      transition: Transition.fadeIn,
+    ),
+
+    /// New Real Estate
+    GetPage(
+      name: AppRoutes.newRealEstate,
+      page: () => const NewRealEstatePage(),
+      binding: NewRealEstateBinding(),
       transition: Transition.fadeIn,
     ),
   ];
