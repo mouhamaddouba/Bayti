@@ -36,8 +36,8 @@ class NewRealEstateAppBarView extends GetView<NewRealEstateController> {
               color: Theme.of(context).primaryColor,
               withBackground: true,
               backgroundRadius: AppDimensions.radius10,
-              backgroundSize: AppDimensions.iconSize40,
-              size: AppDimensions.iconSize30,
+              backgroundSize: AppDimensions.iconSize38,
+              size: AppDimensions.iconSize26,
               onTap: () {
                 controller.on(
                   event: BackToListCategoriesEvent(),

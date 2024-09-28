@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class NewRealEstateState {
   final bool isLoading;
@@ -38,6 +39,12 @@ class NewRealEstateState {
   final double longitudeValue;
   final LatLng location;
 
+  final String city;
+  final String region;
+  final RxList<ParseObject> cityTable;
+  final List<dynamic> suggestions;
+  final bool isError;
+
   NewRealEstateState({
     required this.isLoading,
     required this.isSaveButtonPress,
@@ -66,6 +73,11 @@ class NewRealEstateState {
     required this.latitudeValue,
     required this.longitudeValue,
     required this.location,
+    required this.city,
+    required this.region,
+    required this.cityTable,
+    required this.suggestions,
+    required this.isError,
   });
 
   NewRealEstateState.defaultObj()
@@ -97,6 +109,11 @@ class NewRealEstateState {
           latitudeValue: 36.20059287559827,
           longitudeValue: 37.141430244674815,
           location: const LatLng(36.20059287559827, 37.141430244674815),
+          city: '',
+          region: '',
+          cityTable: <ParseObject>[].obs,
+          suggestions: [],
+          isError: false,
         );
 
   NewRealEstateState copyWith({
@@ -127,6 +144,11 @@ class NewRealEstateState {
     double? latitudeValue,
     double? longitudeValue,
     LatLng? location,
+    String? city,
+    String? region,
+    RxList<ParseObject>? cityTable,
+    List<dynamic>? suggestions,
+    bool? isError,
   }) =>
       NewRealEstateState(
         isLoading: isLoading ?? this.isLoading,
@@ -164,5 +186,10 @@ class NewRealEstateState {
         latitudeValue: latitudeValue ?? this.latitudeValue,
         longitudeValue: longitudeValue ?? this.longitudeValue,
         location: location ?? this.location,
+        city: city ?? this.city,
+        region: region ?? this.region,
+        cityTable: cityTable ?? this.cityTable,
+        suggestions: suggestions ?? this.suggestions,
+        isError: isError ?? this.isError,
       );
 }
