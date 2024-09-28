@@ -108,4 +108,12 @@ abstract class AppStrings {
   static const String save = "save";
   static const String shareRequest = "shareRequest";
   static const String deleteAll = "deleteAll";
+
+  /// Location
+  static const String selectLocation = "selectLocation";
+  static const String donePick = "donePick";
+  static const String locationDisabled = "locationDisabled";
+  static const String locationPermissionReason = "locationPermissionReason";
+  static const String locationPermissionReasonRequest =
+      "locationPermissionReasonRequest";
 }

@@ -3,6 +3,7 @@ import 'package:bayti/source/core/values/app_dimensions.dart';
 import 'package:bayti/source/core/values/app_strings.dart';
 import 'package:bayti/source/core/values/constants/app_constants.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_controller.dart';
+import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_event.dart';
 import 'package:bayti/source/global_widgets/app_icon_widget.dart';
 import 'package:bayti/source/global_widgets/app_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,11 @@ class NewRealEstateAppBarView extends GetView<NewRealEstateController> {
               backgroundRadius: AppDimensions.radius10,
               backgroundSize: AppDimensions.iconSize40,
               size: AppDimensions.iconSize30,
-              onTap: () {},
+              onTap: () {
+                controller.on(
+                  event: BackToListCategoriesEvent(),
+                );
+              },
             ),
 
             /// Title Appbar
@@ -54,14 +59,18 @@ class NewRealEstateAppBarView extends GetView<NewRealEstateController> {
                 ? Obx(
                     () {
                       return AppIconWidget(
-                        onTap: () {},
+                        onTap: () {
+                          controller.on(
+                            event: PickLocationEvent(),
+                          );
+                        },
                         withBackground: true,
                         containerColor: AppColors.onPrimary,
                         iconData: Icons.my_location_outlined,
                         backgroundRadius: AppDimensions.radius10,
                         backgroundSize: AppDimensions.iconSize40,
                         color: controller.state().isSaveButtonPress
-                            ? AppColors.primary
+                            ? AppColors.successLight
                             : AppColors.gray03,
                       );
                     },

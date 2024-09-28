@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class NewRealEstateState {
   final bool isLoading;
@@ -33,6 +34,10 @@ class NewRealEstateState {
   List<File> images;
   final Uint8List videoThumbnail;
 
+  final double latitudeValue;
+  final double longitudeValue;
+  final LatLng location;
+
   NewRealEstateState({
     required this.isLoading,
     required this.isSaveButtonPress,
@@ -58,6 +63,9 @@ class NewRealEstateState {
     required this.voidTypeValue,
     required this.images,
     required this.videoThumbnail,
+    required this.latitudeValue,
+    required this.longitudeValue,
+    required this.location,
   });
 
   NewRealEstateState.defaultObj()
@@ -86,6 +94,9 @@ class NewRealEstateState {
           voidTypeValue: '',
           images: [],
           videoThumbnail: Uint8List(0),
+          latitudeValue: 36.20059287559827,
+          longitudeValue: 37.141430244674815,
+          location: const LatLng(36.20059287559827, 37.141430244674815),
         );
 
   NewRealEstateState copyWith({
@@ -113,6 +124,9 @@ class NewRealEstateState {
     String? voidTypeValue,
     List<File>? images,
     Uint8List? videoThumbnail,
+    double? latitudeValue,
+    double? longitudeValue,
+    LatLng? location,
   }) =>
       NewRealEstateState(
         isLoading: isLoading ?? this.isLoading,
@@ -147,5 +161,8 @@ class NewRealEstateState {
         voidTypeValue: voidTypeValue ?? this.voidTypeValue,
         images: images ?? this.images,
         videoThumbnail: videoThumbnail ?? this.videoThumbnail,
+        latitudeValue: latitudeValue ?? this.latitudeValue,
+        longitudeValue: longitudeValue ?? this.longitudeValue,
+        location: location ?? this.location,
       );
 }

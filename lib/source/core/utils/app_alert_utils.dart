@@ -40,7 +40,7 @@ abstract class AppAlertUtils {
       messageText: Text(
         message,
         style: const TextStyle(
-          fontSize: AppDimensions.fontSize12,
+          fontSize: AppDimensions.fontSize09,
           color: AppColors.white01,
         ),
       ),

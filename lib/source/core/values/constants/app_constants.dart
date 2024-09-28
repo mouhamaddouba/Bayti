@@ -1,8 +1,11 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 abstract class AppConstants {
   static const bool isAdmin = true;
 
   /// Duration
   static const int duration01 = 1;
+  static const int duration03 = 3;
   static const int duration05 = 5;
   static const int duration150 = 150;
   static const int duration500 = 500;
@@ -36,4 +39,8 @@ abstract class AppConstants {
   /// Constant tween
   static const double tween0_9 = 0.9;
   static const double tween1_1 = 1.1;
+
+  /// Constant Location
+  static const LatLng syriaLatLng = LatLng(0, 0);
+  static const double zoomCamera = 20;
 }

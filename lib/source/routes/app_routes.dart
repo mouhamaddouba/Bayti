@@ -12,4 +12,7 @@ abstract class AppRoutes {
 
   /// list real estate
   static const String listRealEstate = '/listRealEstate';
+
+  /// location
+  static const String location = '/location';
 }

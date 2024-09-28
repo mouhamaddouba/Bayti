@@ -9,6 +9,8 @@ class DashboardFavoritePage extends GetView<DashboardFavoriteController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      
+    );
   }
 }
