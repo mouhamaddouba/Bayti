@@ -7,7 +7,6 @@ import 'package:bayti/source/features/new_real_estate/presentation/logic/new_rea
 import 'package:bayti/source/global_widgets/app_icon_widget.dart';
 import 'package:bayti/source/global_widgets/app_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class NewRealEstateAppBarView extends GetView<NewRealEstateController> {

@@ -7,7 +7,6 @@ import 'package:bayti/source/features/dashboard_real_estate/presentation/logic/d
 import 'package:bayti/source/features/dashboard_real_estate/presentation/logic/dashboard_real_estate_event.dart';
 import 'package:bayti/source/global_widgets/app_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class RealEstatFloatButtonView extends GetView<DashboardRealEstateController> {

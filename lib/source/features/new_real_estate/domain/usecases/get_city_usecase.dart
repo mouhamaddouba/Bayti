@@ -4,19 +4,19 @@ import 'package:bayti/source/features/new_real_estate/data/models/remote/respons
 import 'package:bayti/source/features/new_real_estate/domain/repositories/new_real_estate_repo.dart';
 import 'package:dartz/dartz.dart';
 
-class NewRealEstateUseCase extends UseCase<CityDataResponseDto, Params> {
+class GetCityUseCase extends UseCase<CityDataResponseDto, GetCityParams> {
   final NewRealEstateRepo _repository;
 
-  NewRealEstateUseCase({
+  GetCityUseCase({
     required NewRealEstateRepo repository,
   }) : _repository = repository;
 
   @override
-  Future<Either<Failure, CityDataResponseDto>> call(Params params) {
-    return _repository.getCityWithRegion();
+  Future<Either<Failure, CityDataResponseDto>> call(GetCityParams params) {
+    return _repository.getCity();
   }
 }
 
-class Params {
-  Params();
+class GetCityParams {
+  GetCityParams();
 }

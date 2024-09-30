@@ -1,4 +1,5 @@
 import 'package:bayti/source/core/values/app_strings.dart';
+import 'package:bayti/source/core/values/constants/app_constants.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_controller.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_event.dart';
 import 'package:bayti/source/global_widgets/custom_drop_down/custom_dropdown.dart';
@@ -34,32 +35,35 @@ class NewRealEstateLocationSelectorView
           () {
             return controller.state().isFetchRegion
                 ? const SizedBox.shrink()
-                : Builder(builder: (context) {
-                    if (!controller.state().regionData.contains(
-                        controller.state().regionDropDownController.text)) {
-                      controller.state().regionDropDownController.text = '';
-                    }
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                : Builder(
+                    builder: (context) {
                       if (!controller.state().regionData.contains(
                           controller.state().regionDropDownController.text)) {
                         controller.state().regionDropDownController.text =
-                            AppStrings.regionDropDownHint.tr;
+                            AppConstants.emptyText;
                       }
-                    });
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (!controller.state().regionData.contains(
+                            controller.state().regionDropDownController.text)) {
+                          controller.state().regionDropDownController.text =
+                              AppStrings.regionDropDownHint.tr;
+                        }
+                      });
 
-                    return CustomDropdown(
-                      items: controller.state().regionData,
-                      controller: controller.state().regionDropDownController,
-                      hintText: AppStrings.regionDropDownHint.tr,
-                      onChanged: (region) {
-                        controller.on(
-                          event: NewRealEstateEvent.selectRegion(
-                            region: region,
-                          ),
-                        );
-                      },
-                    );
-                  });
+                      return CustomDropdown(
+                        items: controller.state().regionData,
+                        controller: controller.state().regionDropDownController,
+                        hintText: AppStrings.regionDropDownHint.tr,
+                        onChanged: (region) {
+                          controller.on(
+                            event: NewRealEstateEvent.selectRegion(
+                              region: region,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
           },
         ),
       ],

@@ -7,7 +7,6 @@ import 'package:bayti/source/global_widgets/app_image_widget.dart';
 import 'package:bayti/source/global_widgets/app_loading_widget.dart';
 import 'package:bayti/source/global_widgets/app_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 

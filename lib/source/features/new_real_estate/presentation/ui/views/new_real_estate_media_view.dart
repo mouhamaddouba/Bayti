@@ -1,6 +1,3 @@
-import 'package:bayti/source/core/values/app_colors.dart';
-import 'package:bayti/source/core/values/app_dimensions.dart';
-import 'package:bayti/source/core/values/app_strings.dart';
 import 'package:bayti/source/core/values/export/export_values.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_controller.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/ui/views/new_real_estate_video_view.dart';

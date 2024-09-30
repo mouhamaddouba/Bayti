@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_overrides, avoid_print
 
-import 'package:bayti/source/features/new_real_estate/domain/usecases/new_real_estate_usecase.dart';
+import 'package:bayti/source/core/values/constants/app_constants.dart';
+import 'package:bayti/source/features/new_real_estate/domain/usecases/get_city_usecase.dart';
+import 'package:bayti/source/features/new_real_estate/domain/usecases/get_regions_by_ids_usecase.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_event.dart';
 import 'package:bayti/source/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -17,15 +19,18 @@ class NewRealEstateController extends GetxController {
 
   ///region Use Cases
 
-  final NewRealEstateUseCase _getCityWithRegionUseCase;
+  final GetCityUseCase _getCityUseCase;
+  final GetRegionByIdsUseCase _getRegionByIdsUseCase;
 
   ///endregion Use Cases
 
   ///region Constructors
 
   NewRealEstateController({
-    required NewRealEstateUseCase getCityWithRegionUseCase,
-  }) : _getCityWithRegionUseCase = getCityWithRegionUseCase;
+    required GetCityUseCase getCityUseCase,
+    required GetRegionByIdsUseCase getRegionByIdsUseCase,
+  })  : _getCityUseCase = getCityUseCase,
+        _getRegionByIdsUseCase = getRegionByIdsUseCase;
 
   ///endregion Constructors
 
@@ -135,8 +140,8 @@ class NewRealEstateController extends GetxController {
       ),
     );
 
-    final result = await _getCityWithRegionUseCase.call(
-      Params(),
+    final result = await _getCityUseCase.call(
+      GetCityParams(),
     );
 
     result.fold(
@@ -161,18 +166,6 @@ class NewRealEstateController extends GetxController {
   }
 
   /// Select city from dropDown
-
-  /// Select region from dropDown
-  void _selectRegionEvent({
-    required SelectRegionEvent event,
-  }) {
-    state(
-      state().copyWith(
-        region: event.region,
-      ),
-    );
-  }
-
   void _selectCityEvent({
     required SelectCityEvent event,
   }) async {
@@ -183,65 +176,44 @@ class NewRealEstateController extends GetxController {
       ),
     );
 
-    List listItemSelect = [];
-    List items = [];
+    final result = await _getRegionByIdsUseCase.call(
+      GetRegionsParams(
+        state: state.value,
+      ),
+    );
 
-    final itemSelect = state().cityData.where(
-          (result) => result.get<String>('city') == state().city,
-        );
-
-    print('<<<<<<<<<<<<<<<<<<<<<<itemSelect>>>>>>>>>>>>>>>>>>>>>>');
-    print(itemSelect);
-
-    listItemSelect.assignAll(itemSelect);
-
-    for (final item in listItemSelect) {
-      items.add(item.get<String>('objectId'));
-    }
-
-    //fetch region
-    final QueryBuilder<ParseObject> region = QueryBuilder<ParseObject>(
-      ParseObject('Region'),
-    )..whereContainedIn(
-        'cityId',
-        items,
-      );
-
-    final ParseResponse responseRegion = await region.query();
-
-    if (responseRegion.success && responseRegion.results != null) {
-      if (state().regionData.isEmpty) {
-        for (final itemRegion in responseRegion.results!) {
-          state().regionData.add(
-                itemRegion.get<String>('region'),
-              );
-
-          state(
-            state().copyWith(
-              // isFetchRegion: false,
-              regionData: state().regionData,
-            ),
-          );
-        }
-      } else {
-        state().regionData.clear();
+    result.fold(
+      (failure) {
         state(
           state().copyWith(
-            regionData: state().regionData,
+            isError: true,
           ),
         );
-        for (final itemRegion in responseRegion.results!) {
-          state().regionData.add(
-                itemRegion.get<String>('region'),
-              );
-        }
-      }
-    }
+      },
+      (regions) {
+        state().regionData.assignAll(regions
+            .map((region) {
+              return region.get<String>('region') ?? AppConstants.emptyText;
+            })
+            .toList()
+            .obs);
+      },
+    );
 
     state(
       state().copyWith(
         isFetchRegion: false,
-        // regionData: state().regionData,
+      ),
+    );
+  }
+
+  /// Select region from dropDown
+  void _selectRegionEvent({
+    required SelectRegionEvent event,
+  }) {
+    state(
+      state().copyWith(
+        region: event.region,
       ),
     );
   }
