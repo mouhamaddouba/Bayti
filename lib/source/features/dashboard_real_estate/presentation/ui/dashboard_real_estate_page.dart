@@ -63,7 +63,7 @@ class DashboardRealEstatePage extends GetView<DashboardRealEstateController> {
                             backgroundColor: Colors.black26,
                             title: AppTextWidget(
                               RealEstateTypeEnum().titleRealEstat[index],
-                              fontSize: AppDimensions.fontSize09.sp,
+                              fontSize: AppDimensions.fontSize09,
                               textAlign: TextAlign.center,
                               fontWeight: FontWeight.bold,
                             ),

@@ -39,7 +39,7 @@ class AppBottomBarWidget extends StatelessWidget {
                           milliseconds: AppConstants.duration150,
                         ),
 
-                        width: AppDimensions.width140,
+                        width: AppDimensions.width160,
 
                         // Padding for inner Container
                         padding: const EdgeInsetsDirectional.symmetric(
@@ -81,8 +81,10 @@ class AppBottomBarWidget extends StatelessWidget {
                               AppTextWidget(
                                 item.text ?? AppConstants.emptyText,
                                 maxLines: AppConstants.maxLines,
-                                textStyle:
-                                    Theme.of(context).textTheme.displayMedium,
+                                textColor: AppColors.primary,
+                                fontSize: AppDimensions.fontSize10,
+                                // textStyle:
+                                //     Theme.of(context).textTheme.displayMedium,
                               ),
                           ],
                         ),
@@ -109,7 +111,9 @@ class AppBottomBarWidget extends StatelessWidget {
                           AppTextWidget(
                             item.text ?? AppConstants.emptyText,
                             maxLines: AppConstants.maxLines,
-                            textStyle: Theme.of(context).textTheme.titleSmall,
+                            textColor: AppColors.gray03,
+                            fontSize: AppDimensions.fontSize09,
+                            // textStyle: Theme.of(context).textTheme.titleSmall,
                           ),
                         ],
                       ),

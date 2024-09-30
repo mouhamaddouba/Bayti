@@ -4,9 +4,7 @@ abstract class NewRealEstateEvent {
 
   factory NewRealEstateEvent.pickLocation() = PickLocationEvent;
 
-  factory NewRealEstateEvent.fetchRegion() = FetchRegionEvent;
-
-  factory NewRealEstateEvent.fetchDataNew() = FetchDataNewEvent;
+  factory NewRealEstateEvent.getCity() = GetCityEvent;
 
   /// Params
   factory NewRealEstateEvent.selectCity({
@@ -27,12 +25,8 @@ class PickLocationEvent implements NewRealEstateEvent {
   PickLocationEvent();
 }
 
-class FetchRegionEvent implements NewRealEstateEvent {
-  FetchRegionEvent();
-}
-
-class FetchDataNewEvent implements NewRealEstateEvent {
-  FetchDataNewEvent();
+class GetCityEvent implements NewRealEstateEvent {
+  GetCityEvent();
 }
 
 /// Params

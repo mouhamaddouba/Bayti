@@ -16,6 +16,7 @@ abstract class AppStrings {
   static const String serverFailure = 'serverFailure';
   static const String localException = 'localException';
   static const String serverException = 'serverException';
+  static const String failedToGetCity = 'failedToGetCity';
 
   ///region Alert messages
   static const String alertMassageNoContentText = 'alertMassageNoContentText';

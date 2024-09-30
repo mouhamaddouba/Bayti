@@ -11,7 +11,7 @@ class NewRealEstateState {
   final bool isSaveButtonPress;
 
   final bool isFetchRegion;
-  final RxList<String> cityData;
+  final RxList<String> cityName;
   final RxList<String> regionData;
   final TextEditingController cityDropDownController;
   final TextEditingController regionDropDownController;
@@ -41,7 +41,7 @@ class NewRealEstateState {
 
   final String city;
   final String region;
-  final RxList<ParseObject> cityTable;
+  final RxList<ParseObject> cityData;
   final List<dynamic> suggestions;
   final bool isError;
 
@@ -49,7 +49,7 @@ class NewRealEstateState {
     required this.isLoading,
     required this.isSaveButtonPress,
     required this.isFetchRegion,
-    required this.cityData,
+    required this.cityName,
     required this.regionData,
     required this.cityDropDownController,
     required this.regionDropDownController,
@@ -75,7 +75,7 @@ class NewRealEstateState {
     required this.location,
     required this.city,
     required this.region,
-    required this.cityTable,
+    required this.cityData,
     required this.suggestions,
     required this.isError,
   });
@@ -85,7 +85,7 @@ class NewRealEstateState {
           isLoading: false,
           isSaveButtonPress: false,
           isFetchRegion: true,
-          cityData: <String>[].obs,
+          cityName: <String>[].obs,
           regionData: <String>[].obs,
           cityDropDownController: TextEditingController(),
           regionDropDownController: TextEditingController(),
@@ -111,7 +111,7 @@ class NewRealEstateState {
           location: const LatLng(36.20059287559827, 37.141430244674815),
           city: '',
           region: '',
-          cityTable: <ParseObject>[].obs,
+          cityData: <ParseObject>[].obs,
           suggestions: [],
           isError: false,
         );
@@ -120,7 +120,7 @@ class NewRealEstateState {
     bool? isLoading,
     bool? isSaveButtonPress,
     bool? isFetchRegion,
-    RxList<String>? cityData,
+    RxList<String>? cityName,
     RxList<String>? regionData,
     TextEditingController? cityDropDownController,
     TextEditingController? regionDropDownController,
@@ -146,7 +146,7 @@ class NewRealEstateState {
     LatLng? location,
     String? city,
     String? region,
-    RxList<ParseObject>? cityTable,
+    RxList<ParseObject>? cityData,
     List<dynamic>? suggestions,
     bool? isError,
   }) =>
@@ -154,7 +154,7 @@ class NewRealEstateState {
         isLoading: isLoading ?? this.isLoading,
         isSaveButtonPress: isSaveButtonPress ?? this.isSaveButtonPress,
         isFetchRegion: isFetchRegion ?? this.isFetchRegion,
-        cityData: cityData ?? this.cityData,
+        cityName: cityName ?? this.cityName,
         regionData: regionData ?? this.regionData,
         cityDropDownController:
             cityDropDownController ?? this.cityDropDownController,
@@ -188,7 +188,7 @@ class NewRealEstateState {
         location: location ?? this.location,
         city: city ?? this.city,
         region: region ?? this.region,
-        cityTable: cityTable ?? this.cityTable,
+        cityData: cityData ?? this.cityData,
         suggestions: suggestions ?? this.suggestions,
         isError: isError ?? this.isError,
       );

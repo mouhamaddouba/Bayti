@@ -17,7 +17,7 @@ class NewRealEstateLocationSelectorView
       children: [
         /// city
         CustomDropdown(
-          items: controller.state().cityData,
+          items: controller.state().cityName,
           controller: controller.state().cityDropDownController,
           hintText: AppStrings.cityDropDownHint.tr,
           onChanged: (city) {
@@ -30,24 +30,38 @@ class NewRealEstateLocationSelectorView
         ),
 
         /// Region
-        controller.state().isFetchRegion
-            ? const SizedBox.shrink()
-            : Obx(
-                () {
-                  return CustomDropdown(
-                    items: controller.state().regionData,
-                    controller: controller.state().regionDropDownController,
-                    hintText: AppStrings.regionDropDownHint.tr,
-                    onChanged: (region) {
-                      controller.on(
-                        event: NewRealEstateEvent.selectRegion(
-                          region: region,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+        Obx(
+          () {
+            return controller.state().isFetchRegion
+                ? const SizedBox.shrink()
+                : Builder(builder: (context) {
+                    if (!controller.state().regionData.contains(
+                        controller.state().regionDropDownController.text)) {
+                      controller.state().regionDropDownController.text = '';
+                    }
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (!controller.state().regionData.contains(
+                          controller.state().regionDropDownController.text)) {
+                        controller.state().regionDropDownController.text =
+                            AppStrings.regionDropDownHint.tr;
+                      }
+                    });
+
+                    return CustomDropdown(
+                      items: controller.state().regionData,
+                      controller: controller.state().regionDropDownController,
+                      hintText: AppStrings.regionDropDownHint.tr,
+                      onChanged: (region) {
+                        controller.on(
+                          event: NewRealEstateEvent.selectRegion(
+                            region: region,
+                          ),
+                        );
+                      },
+                    );
+                  });
+          },
+        ),
       ],
     );
   }

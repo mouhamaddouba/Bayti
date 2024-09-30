@@ -42,7 +42,7 @@ class AppNoDataFoundWidget extends StatelessWidget {
         /// Title
         AppTextWidget(
           title.tr,
-          fontSize: AppDimensions.fontSize14,
+          fontSize: AppDimensions.fontSize12,
           textColor: AppColors.black01.withOpacity(
             AppConstants.opacity_06,
           ),

@@ -30,7 +30,7 @@ class RealEstatFloatButtonView extends GetView<DashboardRealEstateController> {
               ? AppStrings.addNewRealEstate.tr
               : AppStrings.addNewRealEstateRequest.tr,
           textColor: AppColors.primary,
-          fontSize: AppDimensions.fontSize08.sp,
+          fontSize: AppDimensions.fontSize08,
           fontWeight: FontWeight.bold,
         ),
       ),

@@ -97,16 +97,16 @@ class _CustomDropdownState extends State<CustomDropdown> {
     final hintText = widget.hintText ?? 'Select value';
 
     // hint style :: if provided then merge with default
-    final hintStyle = TextStyle(
+    final hintStyle = const TextStyle(
       color: AppColors.gray03,
-      fontSize: AppDimensions.fontSize09.sp,
+      fontSize: AppDimensions.fontSize10,
       fontWeight: FontWeight.w400,
     ).merge(widget.hintStyle);
 
     // selected item style :: if provided then merge with default
-    final selectedStyle = TextStyle(
+    final selectedStyle = const TextStyle(
       color: AppColors.black01,
-      fontSize: AppDimensions.fontSize09.sp,
+      fontSize: AppDimensions.fontSize09,
       fontWeight: FontWeight.w400,
     ).merge(widget.selectedStyle);
 

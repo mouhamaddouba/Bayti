@@ -1,3 +1,4 @@
+import 'package:bayti/source/core/values/app_dimensions.dart';
 import 'package:bayti/source/core/values/app_strings.dart';
 import 'package:bayti/source/core/values/constants/app_assets.dart';
 import 'package:bayti/source/features/dashboard_notification/presentation/logic/dashboard_notification_controller.dart';
@@ -18,7 +19,7 @@ class DashboardNotificationPage
         child: AppNoDataFoundWidget(
           path: AppAssets.noNotification,
           title: AppStrings.notFoundNotification.tr,
-          widthImage: 500,
+          widthImage: AppDimensions.width500,
         ),
       ),
     );

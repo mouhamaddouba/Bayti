@@ -106,6 +106,7 @@ abstract class AppDimensions {
   static const double width280 = 280.0;
   static const double width300 = 300.0;
   static const double width320 = 320.0;
+  static const double width500 = 500.0;
 
   ///region height
   static const double height_18 = 1.8;

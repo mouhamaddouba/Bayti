@@ -49,7 +49,7 @@ class SplashPage extends GetView<SplashController> {
                 /// Text splash
                 AppTextWidget(
                   AppStrings.realEstateService.tr,
-                  fontSize: AppDimensions.fontSize14.sp,
+                  fontSize: AppDimensions.fontSize14,
                   textColor: AppColors.black01,
                 ),
 

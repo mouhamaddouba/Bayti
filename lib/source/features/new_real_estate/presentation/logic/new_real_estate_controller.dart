@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_overrides, avoid_print
 
+import 'package:bayti/source/features/new_real_estate/domain/usecases/new_real_estate_usecase.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_event.dart';
 import 'package:bayti/source/routes/app_pages.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:bayti/source/features/new_real_estate/presentation/logic/new_real_estate_state.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -17,11 +17,15 @@ class NewRealEstateController extends GetxController {
 
   ///region Use Cases
 
+  final NewRealEstateUseCase _getCityWithRegionUseCase;
+
   ///endregion Use Cases
 
   ///region Constructors
 
-  NewRealEstateController();
+  NewRealEstateController({
+    required NewRealEstateUseCase getCityWithRegionUseCase,
+  }) : _getCityWithRegionUseCase = getCityWithRegionUseCase;
 
   ///endregion Constructors
 
@@ -39,12 +43,8 @@ class NewRealEstateController extends GetxController {
     _workers();
     _processArguments();
 
-    _fetchRegionEvent(
-      event: FetchRegionEvent(),
-    );
-
-    _fetchDataNewEvent(
-      event: FetchDataNewEvent(),
+    _getCityEvent(
+      event: GetCityEvent(),
     );
   }
 
@@ -78,20 +78,16 @@ class NewRealEstateController extends GetxController {
       _pickLocationEvent(
         event: event,
       );
+    } else if (event is GetCityEvent) {
+      _getCityEvent(
+        event: event,
+      );
     } else if (event is SelectCityEvent) {
       _selectCityEvent(
         event: event,
       );
     } else if (event is SelectRegionEvent) {
       _selectRegionEvent(
-        event: event,
-      );
-    } else if (event is FetchRegionEvent) {
-      _fetchRegionEvent(
-        event: event,
-      );
-    } else if (event is FetchDataNewEvent) {
-      _fetchDataNewEvent(
         event: event,
       );
     }
@@ -120,15 +116,59 @@ class NewRealEstateController extends GetxController {
       state(
         state().copyWith(
           isSaveButtonPress: true,
+          latitudeValue: selectedPosition.latitude,
+          longitudeValue: selectedPosition.longitude,
+          location: selectedPosition,
         ),
       );
     }
+  }
+
+  /// Get City from Back4apps
+  void _getCityEvent({
+    required GetCityEvent event,
+  }) async {
+    state(
+      state().copyWith(
+        isLoading: true,
+        isError: false,
+      ),
+    );
+
+    final result = await _getCityWithRegionUseCase.call(
+      Params(),
+    );
+
+    result.fold(
+      (failure) {
+        state(
+          state().copyWith(
+            isError: true,
+          ),
+        );
+      },
+      (regions) {
+        state().cityName.assignAll(regions.cityName);
+        state().cityData.assignAll(regions.cityData as Iterable<ParseObject>);
+      },
+    );
 
     state(
       state().copyWith(
-        latitudeValue: selectedPosition?.latitude,
-        longitudeValue: selectedPosition?.longitude,
-        location: selectedPosition,
+        isLoading: false,
+      ),
+    );
+  }
+
+  /// Select city from dropDown
+
+  /// Select region from dropDown
+  void _selectRegionEvent({
+    required SelectRegionEvent event,
+  }) {
+    state(
+      state().copyWith(
+        region: event.region,
       ),
     );
   }
@@ -140,16 +180,18 @@ class NewRealEstateController extends GetxController {
       state().copyWith(
         city: event.city,
         isFetchRegion: true,
-        //regionController: state().regionDropDownController,
       ),
     );
 
     List listItemSelect = [];
     List items = [];
 
-    final itemSelect = state().cityTable.where(
+    final itemSelect = state().cityData.where(
           (result) => result.get<String>('city') == state().city,
         );
+
+    print('<<<<<<<<<<<<<<<<<<<<<<itemSelect>>>>>>>>>>>>>>>>>>>>>>');
+    print(itemSelect);
 
     listItemSelect.assignAll(itemSelect);
 
@@ -173,6 +215,13 @@ class NewRealEstateController extends GetxController {
           state().regionData.add(
                 itemRegion.get<String>('region'),
               );
+
+          state(
+            state().copyWith(
+              // isFetchRegion: false,
+              regionData: state().regionData,
+            ),
+          );
         }
       } else {
         state().regionData.clear();
@@ -192,87 +241,9 @@ class NewRealEstateController extends GetxController {
     state(
       state().copyWith(
         isFetchRegion: false,
+        // regionData: state().regionData,
       ),
     );
-  }
-
-  void _selectRegionEvent({
-    required SelectRegionEvent event,
-  }) {
-    state(
-      state().copyWith(
-        region: event.region,
-      ),
-    );
-  }
-
-  void _fetchRegionEvent({
-    required FetchRegionEvent event,
-  }) async {
-    final QueryBuilder<ParseObject> realEstatGet = QueryBuilder<ParseObject>(
-      ParseObject('Region'),
-    );
-
-    final ParseResponse response = await realEstatGet.query();
-
-    if (response.success && response.results != null) {
-      final regions = response.results
-          ?.map((result) => result.get<String>('region'))
-          .whereType<String>()
-          .toList();
-
-      state().suggestions.assignAll(regions as Iterable<String>);
-    } else {
-      print('Error in fetch data suggestion');
-    }
-  }
-
-  void _fetchDataNewEvent({
-    required FetchDataNewEvent event,
-  }) async {
-    try {
-      state(
-        state().copyWith(
-          isLoading: true,
-          isError: false,
-        ),
-      );
-
-      //fetch city
-      final QueryBuilder<ParseObject> city = QueryBuilder<ParseObject>(
-        ParseObject('City'),
-      );
-
-      final ParseResponse responseCity = await city.query();
-
-      if (responseCity.success && responseCity.results != null) {
-        for (final itemCity in responseCity.results!) {
-          state().cityData.add(itemCity.get<String>('city'));
-        }
-
-        state()
-            .cityTable
-            .assignAll(responseCity.results! as Iterable<ParseObject>);
-      }
-
-      // print('ml');
-      // print(state().cityTable);
-      // final QueryBuilder<ParseObject> realEstatGet = QueryBuilder<ParseObject>(
-      //   ParseObject('Region'),
-      // );
-    } catch (error) {
-      state(
-        state().copyWith(
-          isError: true,
-        ),
-      );
-    } finally {
-      state(
-        state().copyWith(
-          isLoading: false,
-        ),
-      );
-    }
   }
 
   ///region Private functions for dealing with events

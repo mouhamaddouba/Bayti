@@ -51,7 +51,7 @@ class NewRealEstateAppBarView extends GetView<NewRealEstateController> {
                   ? AppStrings.addNewRealEstate.tr
                   : AppStrings.addNewRealEstateRequest.tr,
               textColor: AppColors.black01,
-              fontSize: AppDimensions.fontSize12.sp,
+              fontSize: AppDimensions.fontSize12,
             ),
 
             /// Location
